@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 234px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 75px;
+  button {
+    color: #3f4e65;
+    font-weight: 500;
+    width: 35px;
+    height: 35px;
+    border-radius: 1000px;
+    transition: background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: darken(#f9f9f9, 2%);
+    }
+
+    &:active {
+      background-color: darken(#f9f9f9, 5%);
+    }
+
+    &.active {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 198, 80, 0.3) 0%,
+        rgba(254, 202, 110, 0.3) 97.25%
+      );
+    }
+  }
+}
