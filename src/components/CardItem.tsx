@@ -1,36 +1,57 @@
 import '../scss/cards.scss';
 
-export function Carditem() {
+type CardItemProps = {
+  title: string;
+  price: number;
+  imageUrl: string;
+  type: number;
+  size: string;
+  code: number;
+  brand: string;
+  manufacture: string;
+};
+
+export const CardItem: React.FC<CardItemProps> = ({
+  title,
+  price,
+  imageUrl,
+  type,
+  size,
+  code,
+  brand,
+  manufacture,
+}) => {
   return (
     <div className="card-item">
       <div className="card-item-mainimg">
         {' '}
-        <img src="./images/aos.png" alt="" />
+        <img src={imageUrl} alt="" />
       </div>
       <div className="card-item-v">
         <img src="./images/littlebootle.svg" alt="" />
-        <p>450 мл</p>
+        <p>{size} мл</p>
       </div>
       <div className="card-item-parameters">
+        <p>{title}</p>
         <p>
-          <b>AOS</b> средство для мытья посуды Crystal
+          <span>Штрихкод: </span>
+          {code}
         </p>
         <p>
-          <span>Штрихкод: </span>4604049097548
+          <span>Производитель: </span>
+          {manufacture}
         </p>
         <p>
-          <span>Производитель: </span>Нэфис
-        </p>
-        <p>
-          <span>Бренд: </span>AOS
+          <span>Бренд: </span>
+          {brand}
         </p>
       </div>
       <div className="card-item-bottom">
-        <p>48,76 ₸</p>
+        <p>{price} ₸</p>
         <button>
           в корзину <img src="./images/cartitem.svg" alt="" />
         </button>
       </div>
     </div>
   );
-}
+};

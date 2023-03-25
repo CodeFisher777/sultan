@@ -1,12 +1,15 @@
 import React from 'react';
 import { Header } from './components/Header';
 import { Breadcrumbs } from './components/BreadCrumbs';
-import { Cards } from './components/Cards';
+
 import { NameAndSort } from './components/NameAndSort';
 import { Categories } from './components/Categories';
 import { Pagination } from './components/Pagination';
 import { Footer } from './components/Footer';
 import { Filters } from './components/Filters';
+import './scss/cards.scss';
+import { CardItem } from './components/CardItem';
+import cards from './items.json';
 
 function App() {
   return (
@@ -21,7 +24,11 @@ function App() {
             <section className="parametersandcards">
               <Filters />
               <div className="rightside">
-                <Cards />
+                <div className="card">
+                  {cards.map((obj) => (
+                    <CardItem {...obj} key={obj.id} />
+                  ))}
+                </div>
                 <Pagination />
                 <p className="lorem">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam pariatur

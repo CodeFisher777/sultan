@@ -13,9 +13,13 @@
 
     padding: 42px 23px 29px 21px;
     &-mainimg {
+      max-width: 200px;
+      height: 200px;
+      margin: 0 auto;
       margin-bottom: 4px;
       display: flex;
       justify-content: center;
+      object-fit: contain;
     }
     &-v {
       display: flex;
