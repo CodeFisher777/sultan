@@ -11,8 +11,16 @@ import '../scss/app.scss';
 export const Home = () => {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [categoryId, setCategoryId] = React.useState('Уход за телом');
+
+  const [sortType, setSortType] = React.useState({ name: 'Название ▼', sortProperty: 'title' });
   React.useEffect(() => {
-    fetch('https://641e8eecad55ae01ccabd4a2.mockapi.io/items')
+    setIsLoading(true);
+    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+    const sortBy = sortType.sortProperty.replace('-', '');
+    fetch(
+      `https://641e8eecad55ae01ccabd4a2.mockapi.io/items?category=${categoryId}&sortBy=${sortBy}&order=${order}`,
+    )
       .then((res) => {
         return res.json();
       })
@@ -20,20 +28,20 @@ export const Home = () => {
         setItems(arr);
         setIsLoading(false);
       });
-  }, []);
+  }, [categoryId, sortType]);
 
   return (
     <>
       <div className="container">
-        <NameAndSort />
-        <Categories />
+        <NameAndSort value={sortType} onChangeSort={(i) => setSortType(i)} />
+        <Categories value={categoryId} onChangeCategory={(id) => setCategoryId(id)} />
         <section className="parametersandcards">
-          <Filters />
+          <Filters arrBrand={items} />
           <div className="rightside">
             <div className="card">
               {isLoading
                 ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-                : items.map((obj: any) => <CardBlock {...obj} key={obj.id} />)}
+                : items.map((obj) => <CardBlock {...obj} key={obj.id} />)}
             </div>
             <Pagination />
             <p className="lorem">

@@ -2,8 +2,12 @@ import React from 'react';
 
 import '../scss/categories.scss';
 
-export function Categories() {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+type CategoriesProps = {
+  value: string;
+  onChangeCategory: any;
+};
+
+export const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
   const categories = [
     'Уход за телом',
     'Уход за руками',
@@ -17,22 +21,21 @@ export function Categories() {
     'Гигиена полости рта',
     'Бумажная продукция',
   ];
-  const onClickCategory = (index: number) => {
-    setActiveIndex(index);
-  };
+
   return (
     <section className="categories">
       <ul>
-        {categories.map((value, i) => (
+        {categories.map((categoryName, i) => (
+          //@ts-ignore
           <li
-            onClick={() => onClickCategory(i)}
-            className={activeIndex === i ? 'active' : ''}
+            onClick={() => onChangeCategory(categoryName)}
+            className={value === categoryName ? 'active' : ''}
             key={i}
           >
-            {value}
+            {categoryName}
           </li>
         ))}
       </ul>
     </section>
   );
-}
+};

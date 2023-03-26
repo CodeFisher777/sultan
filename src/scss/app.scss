@@ -78,7 +78,7 @@ body {
 
     span {
       color: #3f4e65;
-      border-bottom: 1px dashed orange;
+      border-bottom: 1px dashed #ffc85e;
       cursor: pointer;
     }
   }
@@ -107,12 +107,16 @@ body {
 
         &.active,
         &:hover {
-          background: rgba(254, 95, 30, 0.05);
+          background: linear-gradient(
+            90deg,
+            rgba(255, 198, 80, 0.3) 0%,
+            rgba(254, 202, 110, 0.3) 97.25%
+          );
         }
 
         &.active {
           font-weight: bold;
-          color: orange;
+          color: #ffc85e;
         }
       }
     }

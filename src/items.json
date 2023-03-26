@@ -6,10 +6,10 @@
     "type": 0,
     "size": "30",
     "code": 45693967383,
-    "brand": "Botanica",
+    "brand": "Dove",
     "manufacture": "Botanica",
     "price": 803,
-    "category": 1,
+    "category": "Уход за телом",
     "description": "description"
   },
   {
@@ -22,7 +22,7 @@
     "brand": "Dove",
     "manufacture": "Dove",
     "price": 900,
-    "category": 1,
+    "category": "Уход за телом",
     "description": "description"
   },
   {
@@ -35,7 +35,7 @@
     "brand": "Aravia",
     "manufacture": "Aravia",
     "price": 950,
-    "category": 2,
+    "category": "Уход за руками",
     "description": "description"
   },
   {
@@ -48,7 +48,7 @@
     "brand": "Nivea",
     "manufacture": "Nivea",
     "price": 600,
-    "category": 2,
+    "category": "Уход за руками",
     "description": "description"
   },
   {
@@ -61,7 +61,7 @@
     "brand": "Diacont",
     "manufacture": "Diacont",
     "price": 500,
-    "category": 3,
+    "category": "Уход за ногами",
     "description": "description"
   },
   {
@@ -74,7 +74,7 @@
     "brand": "Feet up",
     "manufacture": "Feet up",
     "price": 300,
-    "category": 3,
+    "category": "Уход за ногами",
     "description": "description"
   },
   {
@@ -87,7 +87,7 @@
     "brand": "Bouticle",
     "manufacture": "Bouticle",
     "price": 700,
-    "category": 4,
+    "category": "Уход за волосами",
     "description": "description"
   },
   {
@@ -100,7 +100,7 @@
     "brand": "Sakura",
     "manufacture": "Sakura",
     "price": 950,
-    "category": 4,
+    "category": "Уход за волосами",
     "description": "description"
   },
   {
@@ -113,7 +113,7 @@
     "brand": "Biocon",
     "manufacture": "Biocon",
     "price": 220,
-    "category": 5,
+    "category": "Средство для загара",
     "description": "description"
   },
   {
@@ -126,7 +126,7 @@
     "brand": "Nivea",
     "manufacture": "Nivea",
     "price": 330,
-    "category": 5,
+    "category": "Средство для загара",
     "description": "description"
   },
   {
@@ -139,7 +139,7 @@
     "brand": "Belita",
     "manufacture": "Belita",
     "price": 200,
-    "category": 6,
+    "category": "Средство для бритья Уход за Лицом",
     "description": "description"
   },
   {
@@ -152,7 +152,7 @@
     "brand": "Modum",
     "manufacture": "Modum",
     "price": 300,
-    "category": 6,
+    "category": "Средство для бритья Уход за Лицом",
     "description": "description"
   },
   {
@@ -165,7 +165,7 @@
     "brand": "Chokolate",
     "manufacture": "Chokolate",
     "price": 450,
-    "category": 7,
+    "category": "Подарочные наборы",
     "description": "description"
   },
   {
@@ -178,7 +178,7 @@
     "brand": "Rose",
     "manufacture": "Rose",
     "price": 550,
-    "category": 7,
+    "category": "Подарочные наборы Уход за телом",
     "description": "description"
   },
   {
@@ -191,7 +191,7 @@
     "brand": "Ageless",
     "manufacture": "USA",
     "price": 777,
-    "category": 8,
+    "category": "Уход за лицом",
     "description": "description"
   },
   {
@@ -204,7 +204,7 @@
     "brand": "Breamane",
     "manufacture": "USA",
     "price": 888,
-    "category": 8,
+    "category": "Уход за лицом",
     "description": "description"
   },
   {
@@ -217,7 +217,7 @@
     "brand": "Умка",
     "manufacture": "Россия",
     "price": 230,
-    "category": 9,
+    "category": "Гигиеническая продукция Уход за лицом",
     "description": "description"
   },
   {
@@ -230,7 +230,7 @@
     "brand": "Лакомка",
     "manufacture": "Россия",
     "price": 200,
-    "category": 9,
+    "category": "Гигиеническая продукция Уход за лицом",
     "description": "description"
   },
   {
@@ -243,7 +243,7 @@
     "brand": "Mexidol",
     "manufacture": "Мексика",
     "price": 240,
-    "category": 10,
+    "category": "Гигиена полости рта",
     "description": "description"
   },
   {
@@ -256,7 +256,7 @@
     "brand": "R.O.C.S",
     "manufacture": "Россия",
     "price": 240,
-    "category": 10,
+    "category": "Гигиена полости рта",
     "description": "description"
   },
   {
@@ -269,7 +269,7 @@
     "brand": "Nature",
     "manufacture": "Россия",
     "price": 100,
-    "category": 11,
+    "category": "Бумажная продукция",
     "description": "description"
   },
   {
@@ -282,7 +282,7 @@
     "brand": "Zewa",
     "manufacture": "Россия",
     "price": 60,
-    "category": 11,
+    "category": "Бумажная продукция",
     "description": "description"
   }
 ]

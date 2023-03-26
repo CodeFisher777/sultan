@@ -1,7 +1,31 @@
+import React from 'react';
 import '../scss/filters.scss';
 import { CategoriesVertical } from './CategoriesVertical';
 
-export function Filters() {
+type FiltersProps = {
+  arrBrand: any;
+};
+
+export const Filters: React.FC<FiltersProps> = ({ arrBrand }) => {
+  //@ts-ignore
+  const uniqArr = [...new Set(arrBrand.map((items) => items.brand))];
+  //@ts-ignore
+  const [openBrand, setOpenBrand] = React.useState(false);
+  let ulClasses = ['filters-brand-checkboxes'];
+  if (openBrand) {
+    //@ts-ignore
+    ulClasses = ['filters-brand-checkboxes active'];
+  } else {
+    //@ts-ignore
+    ulClasses = ['filters-brand-checkboxes'];
+  }
+  const onChangeOpen = () => {
+    if (uniqArr.length > 4) {
+      setOpenBrand(!openBrand);
+    } else {
+      setOpenBrand(false);
+    }
+  };
   return (
     <div className="filters">
       <p className="filters-firstp">Подбор по параметрам</p>
@@ -21,29 +45,19 @@ export function Filters() {
             <img src="./images/search.svg" alt="" />
           </button>
         </div>
-        <ul className="filters-brand-checkboxes">
-          <li>
-            <input type="checkbox" />
-            <p className="filters-brand-checkboxes-name">Nivea</p>
-            <p>(56)</p>
-          </li>
-          <li>
-            <input type="checkbox" />
-            <p className="filters-brand-checkboxes-name">Nivea</p>
-            <p>(56)</p>
-          </li>
-          <li>
-            <input type="checkbox" />
-            <p className="filters-brand-checkboxes-name">Nivea</p>
-            <p>(56)</p>
-          </li>
-          <li>
-            <input type="checkbox" />
-            <p className="filters-brand-checkboxes-name">Nivea</p>
-            <p>(56)</p>
-          </li>
+        <ul
+          //@ts-ignore
+          className={ulClasses}
+        >
+          {uniqArr.map((items: any, i) => (
+            <li key={i}>
+              <input type="checkbox" />
+              <p className="filters-brand-checkboxes-name">{items}</p>
+              <p>({items.length})</p>
+            </li>
+          ))}
         </ul>
-        <label>
+        <label onClick={onChangeOpen}>
           Показать все <img src="./images/sortarrowdown.svg" alt="" />
         </label>
       </div>
@@ -56,4 +70,4 @@ export function Filters() {
       <CategoriesVertical />
     </div>
   );
-}
+};

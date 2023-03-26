@@ -56,6 +56,12 @@
       }
     }
     &-checkboxes {
+      height: 90px;
+      overflow: hidden;
+      &.active {
+        height: auto;
+        overflow: none;
+      }
       li {
         display: flex;
         align-items: center;
