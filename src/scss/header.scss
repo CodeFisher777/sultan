@@ -79,10 +79,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       &-logo {
         padding: 25px 38px 25px 0;
       }
-      a {
+
+      &-catalog {
         width: 192px;
         height: 59px;
         background: #ffc85e;

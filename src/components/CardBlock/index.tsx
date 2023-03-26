@@ -1,6 +1,6 @@
-import '../scss/cards.scss';
+import '../../scss/cards.scss';
 
-type CardItemProps = {
+type CardBlockProps = {
   title: string;
   price: number;
   imageUrl: string;
@@ -11,7 +11,7 @@ type CardItemProps = {
   manufacture: string;
 };
 
-export const CardItem: React.FC<CardItemProps> = ({
+export const CardBlock: React.FC<CardBlockProps> = ({
   title,
   price,
   imageUrl,

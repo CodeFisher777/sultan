@@ -1,4 +1,5 @@
 import '../scss/header.scss';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   return (
@@ -49,8 +50,10 @@ export function Header() {
       <div className="container">
         <div className="header-bottom">
           <div className="header-bottom-left">
-            <img className="header-bottom-left-logo" src="./images/logo.svg" alt="" />
-            <a href="#">
+            <Link to="/">
+              <img className="header-bottom-left-logo" src="./images/logo.svg" alt="" />
+            </Link>
+            <a className="header-bottom-left-catalog" href="#">
               <p>Каталог</p>
               <img src="./images/frame.svg" alt="" />
             </a>
@@ -77,10 +80,10 @@ export function Header() {
             </button>
             <div className="header-stick"></div>
             <div className="header-bottom-right-cart">
-              <div className="header-bottom-right-cart-image">
+              <Link to="/cart" className="header-bottom-right-cart-image">
                 <img src="./images/cart.svg" alt="" />
                 <div className="header-bottom-right-cart-count">3</div>
-              </div>
+              </Link>
               <div className="header-bottom-right-cart-text">
                 <p>Корзина</p>
                 <p>12 478 ₸</p>

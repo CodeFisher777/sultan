@@ -20,6 +20,9 @@
       display: flex;
       justify-content: center;
       object-fit: contain;
+      img {
+        border-radius: 10px;
+      }
     }
     &-v {
       display: flex;

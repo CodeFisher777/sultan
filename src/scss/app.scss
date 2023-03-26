@@ -6,6 +6,7 @@
 @import './pagination.scss';
 @import './footer.scss';
 @import './header.scss';
+@import './cart.scss';
 
 body {
   font-family: 'Inter', sans-serif;
@@ -76,7 +77,7 @@ body {
     }
 
     span {
-      color: orange;
+      color: #3f4e65;
       border-bottom: 1px dashed orange;
       cursor: pointer;
     }

@@ -1,34 +1,39 @@
+import React from 'react';
 import '../scss/app.scss';
 
 export function NameAndSort() {
+  const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState(0);
+  const list = ['Название ▼', 'Название ▲', 'Цена ▼', 'Цена ▲'];
+  const sortName = list[selected];
+
+  const onClickListItem = (i: any) => {
+    setSelected(i);
+    setOpen(false);
+  };
   return (
     <section className="nameandsort">
       <h1>Косметика и гигиена</h1>
       <div className="sort">
         <div className="sort-label">
           <p>Сортировка:</p>
-          <span>
-            название <img src="./images/sortarrowdown.svg" alt="" />
-          </span>
+          <span onClick={() => setOpen(!open)}>{sortName}</span>
         </div>
-        <div className="sort-popup">
-          <ul>
-            <li className="active">
-              Название <img src="./images/sortarrowdown.svg" alt="" />
-            </li>
-            <li>
-              Название <img src="./images/sortarrowup.svg" alt="" />
-            </li>
-            <li>
-              Цена
-              <img src="./images/sortarrowdown.svg" alt="" />
-            </li>
-            <li>
-              Цена
-              <img src="./images/sortarrowup.svg" alt="" />
-            </li>
-          </ul>
-        </div>
+        {open && (
+          <div className="sort-popup">
+            <ul>
+              {list.map((name, i) => (
+                <li
+                  key={i}
+                  onClick={() => onClickListItem(i)}
+                  className={selected === i ? 'active' : ''}
+                >
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );
