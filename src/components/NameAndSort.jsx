@@ -1,12 +1,13 @@
 import React from 'react';
 import '../scss/app.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSort } from '../redux/filter/slice';
 
-type NameAndSortProps = {
-  value: any;
-  onChangeSort: any;
-};
-export const NameAndSort: React.FC<NameAndSortProps> = ({ value, onChangeSort }) => {
+export const NameAndSort = () => {
+  const dispatch = useDispatch();
+  const sort = useSelector((state) => state.filter.sort);
   const [open, setOpen] = React.useState(false);
+  const sortRef = React.useRef();
 
   const list = [
     { name: 'Название ▼', sortProperty: 'title' },
@@ -14,19 +15,32 @@ export const NameAndSort: React.FC<NameAndSortProps> = ({ value, onChangeSort })
     { name: 'Цена ▼', sortProperty: 'price' },
     { name: 'Цена ▲', sortProperty: '-price' },
   ];
-  //@ts-ignore
 
-  const onClickListItem = (i: any) => {
-    onChangeSort(i);
+  const onClickListItem = (obj) => {
+    dispatch(setSort(obj));
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      let path = sortRef.current && event.composedPath().includes(sortRef.current);
+      if (!path) {
+        setOpen(false);
+      }
+    };
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   return (
     <section className="nameandsort">
       <h1>Косметика и гигиена</h1>
-      <div className="sort">
+      <div ref={sortRef} className="sort">
         <div className="sort-label">
           <p>Сортировка:</p>
-          <span onClick={() => setOpen(!open)}>{value.name}</span>
+          <span onClick={() => setOpen(!open)}>{sort.name}</span>
         </div>
         {open && (
           <div className="sort-popup">
@@ -35,8 +49,7 @@ export const NameAndSort: React.FC<NameAndSortProps> = ({ value, onChangeSort })
                 <li
                   key={i}
                   onClick={() => onClickListItem(obj)}
-                  //@ts-ignore
-                  className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                  className={sort.sortProperty === obj.sortProperty ? 'active' : ''}
                 >
                   {obj.name}
                 </li>

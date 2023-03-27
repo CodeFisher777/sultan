@@ -1,15 +1,25 @@
 import '../scss/pagination.scss';
+import ReactPaginate from 'react-paginate';
 
-export function Pagination() {
+type PaginationProps = {
+  currentPage: number;
+  onChangePage: number;
+};
+
+export const Pagination: React.FC<PaginationProps> = ({ currentPage, onChangePage }) => {
   return (
-    <div className="pagination">
-      <img src="./images/arrowleft.svg" alt="" />
-      <button className="active">1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <img src="./images/arrowright.svg" alt="" />
-    </div>
+    <ReactPaginate
+      className="pagination"
+      breakLabel="..."
+      nextLabel=">"
+      //@ts-ignore
+      onPageChange={(event) => onChangePage(event.selected + 1)}
+      pageRangeDisplayed={6}
+      pageCount={5}
+      previousLabel="<"
+      forcePage={currentPage - 1}
+      //@ts-ignore
+      renderOnZeroPageCount={null}
+    />
   );
-}
+};

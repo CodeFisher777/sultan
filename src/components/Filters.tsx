@@ -7,8 +7,11 @@ type FiltersProps = {
 };
 
 export const Filters: React.FC<FiltersProps> = ({ arrBrand }) => {
+  const [searchValue, setSearchValue] = React.useState('');
+
   //@ts-ignore
   const uniqArr = [...new Set(arrBrand.map((items) => items.brand))];
+  const [filteredBrand, setFilteredBrand] = React.useState([]);
   //@ts-ignore
   const [openBrand, setOpenBrand] = React.useState(false);
   let ulClasses = ['filters-brand-checkboxes'];
@@ -26,6 +29,13 @@ export const Filters: React.FC<FiltersProps> = ({ arrBrand }) => {
       setOpenBrand(false);
     }
   };
+
+  const onSearch = () => {
+    //@ts-ignore
+    setFilteredBrand(uniqArr.filter((item) => item.toLowerCase() == searchValue.toLowerCase()));
+  };
+  const arrRender = filteredBrand.length !== 0 ? filteredBrand : uniqArr;
+
   return (
     <div className="filters">
       <p className="filters-firstp">Подбор по параметрам</p>
@@ -40,8 +50,12 @@ export const Filters: React.FC<FiltersProps> = ({ arrBrand }) => {
       <div className="filters-brand">
         <p className="filters-brand-firstp">Бренд</p>
         <div className="filters-brand-search">
-          <input type="text" placeholder="Поиск..." />
-          <button className="filters-brand-search-circle">
+          <input
+            onChange={(event) => setSearchValue(event.target.value)}
+            type="text"
+            placeholder="Поиск..."
+          />
+          <button onClick={onSearch} className="filters-brand-search-circle">
             <img src="./images/search.svg" alt="" />
           </button>
         </div>
@@ -49,7 +63,7 @@ export const Filters: React.FC<FiltersProps> = ({ arrBrand }) => {
           //@ts-ignore
           className={ulClasses}
         >
-          {uniqArr.map((items: any, i) => (
+          {arrRender.map((items: any, i) => (
             <li key={i}>
               <input type="checkbox" />
               <p className="filters-brand-checkboxes-name">{items}</p>

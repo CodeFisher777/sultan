@@ -1,4 +1,6 @@
 import '../../scss/cards.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../../redux/cart/slice';
 
 type CardBlockProps = {
   title: string;
@@ -9,18 +11,36 @@ type CardBlockProps = {
   code: number;
   brand: string;
   manufacture: string;
+  id: number;
+  description: string;
 };
 
 export const CardBlock: React.FC<CardBlockProps> = ({
   title,
   price,
   imageUrl,
-  type,
+  id,
   size,
   code,
   brand,
   manufacture,
+  description,
 }) => {
+  const dispatch = useDispatch();
+  //@ts-ignore
+  const cartItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
+  const addedCount = cartItem ? cartItem.count : 0;
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+      size,
+      description,
+    };
+    dispatch(addItem(item));
+  };
   return (
     <div className="card-item">
       <div className="card-item-mainimg">
@@ -48,8 +68,9 @@ export const CardBlock: React.FC<CardBlockProps> = ({
       </div>
       <div className="card-item-bottom">
         <p>{price} ₸</p>
-        <button>
-          в корзину <img src="./images/cartitem.svg" alt="" />
+        <button onClick={onClickAdd}>
+          в корзину <img src="./images/cartitem.svg" alt="" />{' '}
+          {addedCount > 0 && <i>{addedCount}</i>}
         </button>
       </div>
     </div>

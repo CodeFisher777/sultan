@@ -1,7 +1,10 @@
 import '../scss/header.scss';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export function Header() {
+  const { items, totalPrice } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   return (
     <header className="header">
       <div className="container">
@@ -82,11 +85,13 @@ export function Header() {
             <div className="header-bottom-right-cart">
               <Link to="/cart" className="header-bottom-right-cart-image">
                 <img src="./images/cart.svg" alt="" />
-                <div className="header-bottom-right-cart-count">3</div>
+                <div className="header-bottom-right-cart-count">
+                  <span>{totalCount}</span>
+                </div>
               </Link>
               <div className="header-bottom-right-cart-text">
                 <p>Корзина</p>
-                <p>12 478 ₸</p>
+                <p>{totalPrice} ₸</p>
               </div>
             </div>
           </div>

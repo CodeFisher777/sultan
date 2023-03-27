@@ -1,9 +1,12 @@
 import React from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryId } from '../redux/filter/slice';
 import '../scss/categoriesvertical.scss';
 
 export function CategoriesVertical() {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filter.categoryId);
+
   const categories = [
     'Уход за телом',
     'Уход за руками',
@@ -17,19 +20,19 @@ export function CategoriesVertical() {
     'Гигиена полости рта',
     'Бумажная продукция',
   ];
-  const onClickCategory = (index: number) => {
-    setActiveIndex(index);
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
   };
   return (
     <div className="categoriesvertical">
       <ul>
-        {categories.map((value, i) => (
+        {categories.map((categoryName, i) => (
           <li
-            onClick={() => onClickCategory(i)}
-            className={activeIndex === i ? 'active' : ''}
+            onClick={() => onChangeCategory(categoryName)}
+            className={categoryId === categoryName ? 'active' : ''}
             key={i}
           >
-            {value}
+            {categoryName}
           </li>
         ))}
       </ul>
