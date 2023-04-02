@@ -1,18 +1,22 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { addItem } from '../../redux/cart/slice';
-import { selectCartItemById } from '../../redux/card/slice';
+import { selectCartItemById } from '../../redux/cart/slice';
+import { CartItem } from '../../redux/cart/types';
+import { fetchAdminCardRedux, fetchRemoveCardRedux } from '../../redux/card/asyncActions';
+import { useAppDispatch } from '../../redux/store';
 
 type CardBlockProps = {
   title: string;
   price: number;
   imageUrl: string;
   type: number;
-  size: string;
+  size: number;
   code: number;
   brand: string;
   manufacture: string;
-  id: number;
+  id: string;
   description: string;
 };
 
@@ -22,26 +26,38 @@ export const CardBlock: React.FC<CardBlockProps> = ({
   imageUrl,
   id,
   size,
+  type,
   code,
   brand,
   manufacture,
   description,
 }) => {
-  const dispatch = useDispatch();
-  //@ts-ignore
+  const dispatch = useAppDispatch();
   const cartItem = useSelector(selectCartItemById(id));
-  //@ts-ignore
   const addedCount = cartItem ? cartItem.count : 0;
+  const location = useLocation();
+  const navigate = useNavigate();
   const onClickAdd = () => {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       price,
       imageUrl,
       size,
       description,
+      count: 0,
+      itemCount: 0,
     };
     dispatch(addItem(item));
+  };
+  const onClickRemove = () => {
+    if (window.confirm('Вы действительно хотите удалить товар?'))
+      dispatch(fetchRemoveCardRedux(id));
+    const currentPageStr = '1';
+    const categoryId = 'Уход за телом';
+    setTimeout(() => {
+      dispatch(fetchAdminCardRedux({ currentPageStr, categoryId }));
+    }, 1000);
   };
   return (
     <div className="card-item">
@@ -52,8 +68,17 @@ export const CardBlock: React.FC<CardBlockProps> = ({
         </div>
       </Link>
       <div className="card-item-v">
-        <img src="./images/littlebootle.svg" alt="" />
-        <p>{size} мл</p>
+        {type ? (
+          <>
+            <img src="./images/box.png" alt="" />
+            <p>{size} гр.</p>
+          </>
+        ) : (
+          <>
+            <img src="./images/littlebootle.svg" alt="" />
+            <p>{size} мл</p>
+          </>
+        )}
       </div>
       <div className="card-item-parameters">
         <Link to={`/card/${id}`}>
@@ -79,6 +104,14 @@ export const CardBlock: React.FC<CardBlockProps> = ({
           {addedCount > 0 && <i>{addedCount}</i>}
         </button>
       </div>
+      {location.pathname === '/admin' && (
+        <div className="card-item-patchanddel">
+          <Link to={`/card/${id}/edit`}>
+            <button>редактировать</button>
+          </Link>
+          <button onClick={onClickRemove}>удалить</button>
+        </div>
+      )}
     </div>
   );
 };
