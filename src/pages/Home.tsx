@@ -46,7 +46,7 @@ export const Home: React.FC = () => {
 
     setFilteredPrice(newDataSet);
   }, [minPrice, maxPrice]);
-  console.log(filteredPrice, minPrice, maxPrice);
+
   return (
     <>
       <div className="container">
