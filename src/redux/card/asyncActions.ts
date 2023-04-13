@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { Card, SearchCardParams, AdminCardParams } from './types';
 
 export const fetchCardRedux = createAsyncThunk<Card[], SearchCardParams>(

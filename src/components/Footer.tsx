@@ -1,6 +1,6 @@
-export function Footer() {
+export const Footer: React.FC = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="container">
         <div className="footer-cards">
           <div className="footer-card">
@@ -83,4 +83,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};

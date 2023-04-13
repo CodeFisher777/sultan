@@ -1,7 +1,6 @@
 import React from 'react';
-import arrowLeft from './../assets/images/mobilearrowleft.svg';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { selectSort, setSort } from '../redux/filter/slice';
 import { Sort, SortPropertyEnum } from '../redux/filter/types';
@@ -24,7 +23,7 @@ export const sortList: SortItem[] = [
   { name: 'Цена ▲', sortProperty: SortPropertyEnum.PRICE_ASC },
 ];
 
-export const NameAndSort: React.FC<SortPopupProps> = React.memo(({ value }) => {
+export const SortBlock: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -54,16 +53,18 @@ export const NameAndSort: React.FC<SortPopupProps> = React.memo(({ value }) => {
       <div ref={sortRef} className="sort">
         <div className="sort-label">
           <p>Сортировка:</p>
-          <span onClick={() => setOpen(!open)}>{value.name}</span>
+          <span data-testid="toggle-btn" onClick={() => setOpen(!open)}>
+            {value?.name}
+          </span>
         </div>
         {open && (
-          <div className="sort-popup">
+          <div className="sort-popup" data-testid="toggle-elem">
             <ul>
               {sortList.map((obj, i) => (
                 <li
                   key={i}
                   onClick={() => onClickListItem(obj)}
-                  className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                  className={value?.sortProperty === obj.sortProperty ? 'active' : ''}
                 >
                   {obj.name}
                 </li>

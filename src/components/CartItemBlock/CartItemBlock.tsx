@@ -1,11 +1,12 @@
 import React from 'react';
-import styles from './CartItem.module.scss';
 import { useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice';
 import { CartItem } from '../../redux/cart/types';
-import { useMediaQuery } from 'react-responsive';
 
-type CartItemProps = {
+import styles from './CartItem.module.scss';
+
+type CartItemBlockProps = {
   id: string;
   title: string;
   price: number;
@@ -15,7 +16,7 @@ type CartItemProps = {
   size: number;
 };
 
-export const CartItemBlock: React.FC<CartItemProps> = ({
+export const CartItemBlock: React.FC<CartItemBlockProps> = ({
   id,
   title,
   price,
@@ -37,9 +38,7 @@ export const CartItemBlock: React.FC<CartItemProps> = ({
     dispatch(minusItem(id));
   };
   const onClickRemove = () => {
-    if (window.confirm('Ты действительно хочешь удалить товар?')) {
-      dispatch(removeItem(id));
-    }
+    dispatch(removeItem(id));
   };
   return (
     <>

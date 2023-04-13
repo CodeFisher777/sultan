@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FullcardItem } from '../components/FullCardItem/FullcardItem';
+import { FullcardItem } from '../../components/FullCardItem/FullcardItem';
 
 import axios from 'axios';
 
@@ -19,14 +19,14 @@ export const FullCard: React.FC = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
-    async function fetchCard() {
+    const fetchCard = async () => {
       try {
         const { data } = await axios.get('https://641e8eecad55ae01ccabd4a2.mockapi.io/items/' + id);
         setCard(data);
       } catch (error) {
         alert('Ошибка при получении товара');
       }
-    }
+    };
     fetchCard();
   }, []);
   if (!card) {

@@ -15,4 +15,5 @@ export interface FilterSliceState {
   sort: Sort;
   minPrice: number;
   maxPrice: number;
+  brand: string[];
 }

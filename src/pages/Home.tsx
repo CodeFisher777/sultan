@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectFilter, setCategoryId, setCurrentPage } from '../redux/filter/slice';
-import { NameAndSort } from '../components/NameAndSort';
+import { SortBlock } from '../components/SortBlock';
 import { Categories } from '../components/Categories';
 import { Pagination } from '../components/Pagination';
 import { Filters } from '../components/Filters';
@@ -14,14 +14,16 @@ import { selectCard } from '../redux/card/slice';
 import { useAppDispatch } from '../redux/store';
 import { useMediaQuery } from 'react-responsive';
 
-import { Back } from '../components/back';
+import { Back } from '../components/Back';
 import { Card } from '../redux/card/types';
+import { CategoriesVertical } from '../components/CategoriesVertical';
 export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const { categoryId, sort, currentPage, minPrice, maxPrice } = useSelector(selectFilter);
+  const { categoryId, sort, currentPage, minPrice, maxPrice, brand } = useSelector(selectFilter);
   const { items, status } = useSelector(selectCard);
-  const [filteredPrice, setFilteredPrice] = React.useState(items);
+  const [filteredPrice, setFilteredPrice] = React.useState<Card[]>(items);
+  const [filteredBrand, setFilteredBrand] = React.useState<Card[]>(items);
   const isMobile = useMediaQuery({ query: '(max-width:950px)' });
   const onChangeCategory = React.useCallback((id: string) => {
     dispatch(setCategoryId(id));
@@ -43,10 +45,15 @@ export const Home: React.FC = () => {
     const newDataSet = items.filter(
       (item: Card) => item.price >= minPrice && item.price <= maxPrice,
     );
-
     setFilteredPrice(newDataSet);
-  }, [minPrice, maxPrice]);
 
+    brand.forEach((i) => {
+      const newDataSet2: Card[] = items.filter((item: Card) => item.brand == i);
+      //@ts-ignore
+      setFilteredBrand((pre) => [...pre, newDataSet2]);
+    });
+  }, [minPrice, maxPrice, brand]);
+  console.log(brand);
   return (
     <>
       <div className="container">
@@ -67,9 +74,12 @@ export const Home: React.FC = () => {
               <h1>Косметика и гигиена</h1>
             </div>
             <div className="filterm">
-              <Filters items={items} />
+              <div className="filterblock">
+                <Filters items={items} />
+                <CategoriesVertical />
+              </div>
             </div>
-            <NameAndSort value={sort} />
+            <SortBlock value={sort} />
             <div className="card">
               {status === 'loading'
                 ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
@@ -88,12 +98,14 @@ export const Home: React.FC = () => {
           <>
             <div className="hometop">
               <h1>Косметика и гигиена</h1>
-              <NameAndSort value={sort} />
+              <SortBlock value={sort} />
             </div>
-
             <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-            <section className="parametersandcards">
-              <Filters items={items} />
+            <div className="parametersandcards">
+              <div className="filterblock">
+                <Filters items={items} />
+                <CategoriesVertical />
+              </div>
               <div className="rightside">
                 <div className="card">
                   {status === 'loading'
@@ -109,7 +121,7 @@ export const Home: React.FC = () => {
                   ipsa excepturi quis doloribus quasi! Et repudiandae unde nesciunt natus.
                 </p>
               </div>
-            </section>
+            </div>
           </>
         )}
       </div>

@@ -85,119 +85,119 @@ export const AddItem = () => {
   }, []);
 
   const onClickAdd = () => {
-    //@ts-ignore
     setArr([...arr, selState]);
   };
-  const cat = arr.join(',');
 
   return (
-    <Paper style={{ padding: 30 }}>
-      <TextField
-        classes={{ root: styles.title }}
-        variant="standard"
-        placeholder="Название продукта"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        fullWidth
-      />
+    <div data-testid="addItem-page">
+      <Paper style={{ padding: 30 }}>
+        <TextField
+          classes={{ root: styles.title }}
+          variant="standard"
+          placeholder="Название продукта"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          fullWidth
+        />
 
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Ссылка на картинку"
-        fullWidth
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-      />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Ссылка на картинку"
+          fullWidth
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
 
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Введите 1 если параметр вес, введите 0 если параметр объём "
-        fullWidth
-        value={_type}
-        onChange={(e) => set_Type(e.target.value)}
-      />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Введите 1 если параметр вес, введите 0 если параметр объём "
+          fullWidth
+          value={_type}
+          onChange={(e) => set_Type(e.target.value)}
+        />
 
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Размер"
-        fullWidth
-        value={_size}
-        onChange={(e) => set_Size(e.target.value)}
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Код"
-        fullWidth
-        value={_code}
-        onChange={(e) => set_Code(e.target.value)}
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Брэнд"
-        fullWidth
-        value={brand}
-        onChange={(e) => setBrand(e.target.value)}
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Производитель"
-        fullWidth
-        value={manufacture}
-        onChange={(e) => setManufacture(e.target.value)}
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Цена"
-        fullWidth
-        value={_price}
-        onChange={(e) => set_Price(e.target.value)}
-      />
-      <TextField
-        classes={{ root: styles.tags }}
-        variant="standard"
-        placeholder="Описание"
-        fullWidth
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      {isEditing ? (
-        <>
-          <label>{typeOfCare}</label>
-          <p>Категории сверху заменятся на категории снизу</p>
-        </>
-      ) : (
-        ''
-      )}
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Размер"
+          fullWidth
+          value={_size}
+          onChange={(e) => set_Size(e.target.value)}
+        />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Код"
+          fullWidth
+          value={_code}
+          onChange={(e) => set_Code(e.target.value)}
+        />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Брэнд"
+          fullWidth
+          value={brand}
+          onChange={(e) => setBrand(e.target.value)}
+        />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Производитель"
+          fullWidth
+          value={manufacture}
+          onChange={(e) => setManufacture(e.target.value)}
+        />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Цена"
+          fullWidth
+          value={_price}
+          onChange={(e) => set_Price(e.target.value)}
+        />
+        <TextField
+          classes={{ root: styles.tags }}
+          variant="standard"
+          placeholder="Описание"
+          fullWidth
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        {isEditing ? (
+          <>
+            <label>{typeOfCare}</label>
+            <p>Категории сверху заменятся на категории снизу</p>
+          </>
+        ) : (
+          ''
+        )}
 
-      <div>{arr.join(',')}</div>
-      <div className={styles.buttons}>
-        <select
-          onChange={(e) => setSelState(e.target.value)}
-          className={styles.select}
-          name="selectedCategory"
-          value={selState}
-        >
-          {categories.map((categoryName, i) => (
-            <option key={i} value={categoryName}>
-              {categoryName}
-            </option>
-          ))}
-        </select>
-        <button onClick={onClickAdd}> Добавить тип</button>
-      </div>
-      <div className={styles.buttons}>
-        <button onClick={onSubmit}>{isEditing ? 'Сохранить' : 'Добавить'}</button>
-        <Link to="/">
-          <button>Отмена</button>
-        </Link>
-      </div>
-    </Paper>
+        <div>{arr.join(',')}</div>
+        <div className={styles.buttons}>
+          <select
+            onChange={(e) => setSelState(e.target.value)}
+            className={styles.select}
+            name="selectedCategory"
+            value={selState}
+          >
+            {categories.map((categoryName, i) => (
+              <option key={i} value={categoryName}>
+                {categoryName}
+              </option>
+            ))}
+          </select>
+          <button onClick={onClickAdd}> Добавить тип</button>
+        </div>
+        <div className={styles.buttons}>
+          <button onClick={onSubmit}>{isEditing ? 'Сохранить' : 'Добавить'}</button>
+          <Link to="/">
+            <button>Отмена</button>
+          </Link>
+        </div>
+      </Paper>
+    </div>
   );
 };

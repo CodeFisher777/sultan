@@ -1,6 +1,5 @@
 import ReactPaginate from 'react-paginate';
-import { selectCard } from '../redux/card/slice';
-import { useSelector } from 'react-redux';
+
 type PaginationProps = {
   currentPage: number;
   onChangePage: (page: number) => void;

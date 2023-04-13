@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ModalWindow } from '../components/ModalWindow/modalWindow';
-import { CartItemBlock } from '../components/CartItem/CartItem';
+import { CartItemBlock } from '../components/CartItemBlock/CartItemBlock';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearItems, selectCart } from '../redux/cart/slice';
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs';
 import { useMediaQuery } from 'react-responsive';
-import { Back } from '../components/back';
+import { Back } from '../components/Back';
 
 export const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const Cart: React.FC = () => {
     }
   };
   return (
-    <>
+    <div data-testid="cart-page">
       <div className="container">
         <Breadcrumbs
           links={[
@@ -56,6 +56,6 @@ export const Cart: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

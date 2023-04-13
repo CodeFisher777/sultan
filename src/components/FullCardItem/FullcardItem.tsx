@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import styles from './FullCardItem.module.scss';
+import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-
+import { Back } from '../Back';
 import { addOneItem } from '../../redux/cart/slice';
 import { selectCartItemById } from '../../redux/cart/slice';
 import share from '../../assets/images/share.png';
 import download from '../../assets/images/downloadblack.svg';
-import { useMediaQuery } from 'react-responsive';
-import { Back } from '../back';
+
+import styles from './FullCardItem.module.scss';
+
 type FullcardItemProps = {
   card: {
     id: string;

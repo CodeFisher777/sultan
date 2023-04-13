@@ -6,7 +6,7 @@ import mastercard from '../assets/images/mastercard.png';
 import whatsup from '../assets/images/whatsup.png';
 import telegram from '../assets/images/telegram.png';
 
-export function FooterMobile() {
+export const FooterMobile: React.FC = () => {
   return (
     <footer className="footerm">
       <div className="container">
@@ -96,4 +96,4 @@ export function FooterMobile() {
       </div>
     </footer>
   );
-}
+};

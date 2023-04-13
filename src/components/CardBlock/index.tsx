@@ -36,7 +36,6 @@ export const CardBlock: React.FC<CardBlockProps> = ({
   const cartItem = useSelector(selectCartItemById(id));
   const addedCount = cartItem ? cartItem.count : 0;
   const location = useLocation();
-  const navigate = useNavigate();
   const onClickAdd = () => {
     const item: CartItem = {
       id,

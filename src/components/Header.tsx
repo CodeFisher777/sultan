@@ -17,9 +17,10 @@ import headerTel from '../assets/images/headertel.png';
 import close from '../assets/images/closeburger.png';
 import { useMediaQuery } from 'react-responsive';
 
-export function Header() {
+export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
+
+  const totalCount = items?.reduce((sum: number, item: any) => sum + item.count, 0);
   const isMounted = React.useRef(false);
   const [open, setOpen] = React.useState(false);
   const isMobile = useMediaQuery({ query: '(max-width:950px)' });
@@ -197,7 +198,7 @@ export function Header() {
             </button>
             <div className="header-stick"></div>
             <div className="header-bottom-right-cart">
-              <Link to="/cart" className="header-bottom-right-cart-image">
+              <Link to="/cart" className="header-bottom-right-cart-image" data-testid="cart-link">
                 <img src={cart} alt="" />
                 <div className="header-bottom-right-cart-count">
                   <span>{totalCount}</span>
@@ -214,4 +215,4 @@ export function Header() {
       <div className="header-line"></div>
     </header>
   );
-}
+};
